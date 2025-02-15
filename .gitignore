@@ -23,6 +23,7 @@
 # misc
 .DS_Store
 *.pem
+schbang.css
 
 # debug
 npm-debug.log*
