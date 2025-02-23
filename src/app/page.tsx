@@ -1,19 +1,15 @@
-import { Heading, Text } from "@/components";
+import { About, Brands, Header, Services } from "./_components/home";
 
 export default function Home() {
-  console.log(process.env.NODE_ENV);
-
   return (
-    <section className="font-sora">
-      <div className="flex flex-col gap-12">
-        <Heading font={"sora"}>
-          Your Creative, Media & Technology Transformation Partner
-        </Heading>
-        <Text>
-          We're a team of 1000+ Specialists delivering award-winning work for
-          300+ brands worldwide, 8 years and counting!
-        </Text>
+    <section className="font-sora bg-foreground flex flex-col items-center">
+      <Header />
+      <div className="bg-white w-screen relative z-10 space-y-12 rounded-b-[60px] overflow-hidden">
+        <About />
+        <Services />
+        <Brands />
       </div>
+      <div className="h-max w-screen bg-black sticky bottom-0 text-white"></div>
     </section>
   );
 }

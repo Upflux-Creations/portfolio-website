@@ -6,7 +6,6 @@ import { Geist, Geist_Mono, Sora } from "next/font/google";
 import "./globals.css";
 
 import { Navbar } from "@/components";
-import { redirect } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,10 +41,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  if (process.env.NODE_ENV === "production" && window.location.href !== "/") {
-    redirect("/");
-  }
-
   return (
     <html lang="en">
       <body
@@ -53,7 +48,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${inverse.variable} ${sora.variable} antialiased mx-auto min-h-screen overflow-x-hidden overflow-y-auto`}
       >
         <Navbar />
-        <main className="py-16">{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   );

@@ -2,13 +2,13 @@ import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import React from "react";
 
-const className = "font-no";
+// const className = "font-no";
 
 const textStyles = cva("text-inherit", {
   variants: {
     size: {
-      sm: "",
-      md: "",
+      sm: "text-xs xs:text-sm md:text-base",
+      md: "text-sm xs:text-base md:text-xl",
       lg: "text-base xs:text-xl md:text-2xl",
     },
     font: {
@@ -18,6 +18,7 @@ const textStyles = cva("text-inherit", {
     weight: {
       normal: "font-normal",
       medium: "font-medium",
+      semibold: "font-semibold",
       bold: "font-bold",
     },
   },
@@ -36,7 +37,13 @@ export interface TextProps
 
 const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
   ({ className, size, font, ...props }, ref) => {
-    return <p {...props} className={cn(textStyles({ font, size }))}></p>;
+    return (
+      <p
+        ref={ref}
+        {...props}
+        className={cn(textStyles({ font, size }), className)}
+      ></p>
+    );
   }
 );
 

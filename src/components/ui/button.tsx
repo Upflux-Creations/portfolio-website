@@ -1,13 +1,10 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-
 import { cn } from "@/lib/utils";
 
-const className = "border";
-
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -26,7 +23,7 @@ const buttonVariants = cva(
       },
       size: {
         default: "h-11 px-4 py-2",
-        sm: "h-10 rounded-md px-3 text-xs",
+        sm: "h-10 rounded-md px-3",
         lg: "h-12 rounded-md px-8",
         icon: "size-10",
       },
@@ -35,11 +32,18 @@ const buttonVariants = cva(
         sides: "rounded-r-full rounded-l-full",
         circle: "rounded-full",
       },
+      iconSize: {
+        default: "[&_svg]:size-4",
+        sm: "[&_svg]:size-3",
+        lg: "[&_svg]:size-6",
+        xl: "[&_svg]:size-8",
+      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
       radius: "default",
+      iconSize: "default",
     },
   }
 );
@@ -51,20 +55,24 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, radius, size, asChild = false, ...props }, ref) => {
+  (
+    { className, variant, radius, size, iconSize, asChild = false, ...props },
+    ref
+  ) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
         className={cn(
-          buttonVariants({ variant, size, className, radius }),
-          "group relative inline-block"
+          buttonVariants({ variant, size, radius, iconSize }),
+          "group relative ",
+          className
         )}
         ref={ref}
         {...props}
       >
         {variant === "fancy" ? (
           <>
-            <span className="relative z-10 transition-colors duration-300 group-hover:text-primary">
+            <span className="relative z-10 inline-flex items-center justify-center gap-2 transition-colors duration-300 group-hover:text-primary">
               {props.children}
             </span>
             <span className="absolute inset-0 bg-primary w-[120%] -left-[10%] skew-x-[30deg] transition-transform duration-500 ease-[cubic-bezier(0.3,1,0.8,1)] group-hover:translate-x-full"></span>
