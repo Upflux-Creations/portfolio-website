@@ -48,7 +48,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${inverse.variable} ${sora.variable} antialiased mx-auto min-h-screen overflow-x-hidden overflow-y-auto`}
       >
         <Navbar />
+        {/* <PageTransition color="bg-pink-500"> */}
         <main>{children}</main>
+        {/* </PageTransition> */}
       </body>
     </html>
   );

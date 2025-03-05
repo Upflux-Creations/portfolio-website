@@ -15,7 +15,10 @@ export const Services = () => {
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!carouselRef.current || !isHovering) return;
-
+      if (e.clientX <= 300) {
+        setScrolled(0);
+        return;
+      }
       // Get section boundaries
       const rect = section.getBoundingClientRect();
 
@@ -25,7 +28,7 @@ export const Services = () => {
 
       // Calculate scroll amount based on relative position
       const { scrollWidth } = carouselRef.current;
-      const carouselScroll = (relativeX / sectionWidth) * (scrollWidth / 2);
+      const carouselScroll = (relativeX / sectionWidth) * (scrollWidth / 2.3);
 
       setScrolled(carouselScroll);
     };

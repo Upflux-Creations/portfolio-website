@@ -1,12 +1,13 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-
+import Link from "next/link";
 interface NavItemProps {
   title: string;
+  href: string;
 }
 
-export const NavItem: React.FC<NavItemProps> = ({ title }) => {
+export const NavItem: React.FC<NavItemProps> = ({ title, href }) => {
   const [isHovering, setIsHovering] = useState(false);
   return (
     <div
@@ -17,7 +18,7 @@ export const NavItem: React.FC<NavItemProps> = ({ title }) => {
         isHovering ? "hover:opacity-100" : "group-hover:opacity-50"
       )}
     >
-      {title}
+      <Link href={href}>{title}</Link>
     </div>
   );
 };

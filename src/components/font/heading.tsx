@@ -16,6 +16,7 @@ const headingStyles = cva("text-inherit", {
       inverse: "font-inverse",
     },
     weight: {
+      medium: "font-medium",
       semibold: "font-semibold",
       bold: "font-bold",
     },
